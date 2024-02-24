@@ -5,13 +5,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBtDSlER1C2OdhDEAycU_Sj5gvk2FYasIY",
-  authDomain: "villa-amrita.firebaseapp.com",
-  projectId: "villa-amrita",
-  storageBucket: "villa-amrita.appspot.com",
-  messagingSenderId: "44441625226",
-  appId: "1:44441625226:web:573f0131fa4a7acc0cc373",
-  measurementId: "G-NLJE7EQTNT",
+  apiKey: "AIzaSyCUbD6Unjv5HzS-Y9EE4ttK5vLjUPmyjqc",
+  authDomain: "villa-amrita-admin.firebaseapp.com",
+  projectId: "villa-amrita-admin",
+  storageBucket: "villa-amrita-admin.appspot.com",
+  messagingSenderId: "719593643122",
+  appId: "1:719593643122:web:5456cd563bfadbccff36eb",
+  measurementId: "G-MBNQPLS125",
 };
 
 // Initialize Firebase
