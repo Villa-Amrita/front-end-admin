@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-primary {
+  @apply border-primary bg-primary hover:border-primary-dark hover:bg-primary-dark border text-white transition-colors;
+}
+
+.btn-secondary {
+  @apply border-primary text-primary hover:border-primary-dark hover:text-primary-dark border bg-white transition-colors;
+}
+
+.btn-block {
+  @apply px-2 py-2;
+}
+
+.glass-blur {
+  filter: blur(5px);
+}
+
+.glass-tint {
+  filter: saturate(180%) brightness(110%);
+}
+
+.glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
