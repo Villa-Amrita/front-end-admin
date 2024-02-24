@@ -35,7 +35,7 @@ const LoginForm = () => {
     try {
       await signin(admin).then(() => {
         if (authenticated()) {
-          router.push("/dashboard");
+          router.push("/rooms");
         }
       });
     } catch (error) {
