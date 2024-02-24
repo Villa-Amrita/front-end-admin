@@ -54,7 +54,13 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col items-center justify-center rounded-3xl bg-white bg-opacity-70 p-8 font-[poppins] shadow-md backdrop-blur-md backdrop-filter">
-      <Image src={"/icon.png"} alt="logo" width={100} height={100} />
+      <Image
+        src="/Icon.png"
+        alt="Villa Amrita Logo"
+        width={100}
+        height={100}
+        loading="lazy"
+      />
       <br />
       <br />
       <br />
