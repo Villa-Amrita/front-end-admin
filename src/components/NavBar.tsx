@@ -48,7 +48,7 @@ const NavBar = () => {
         <div className="font-bold">
           <ul className="flex w-fit flex-row items-center justify-between space-x-10">
             <li className={navItemStyles}>
-              <Link href={"/dashboard"}>Hotel Rooms</Link>
+              <Link href={"/rooms"}>Hotel Rooms</Link>
             </li>
             <li className={navItemStyles}>
               <Link href={"/meals"}>Meals</Link>
