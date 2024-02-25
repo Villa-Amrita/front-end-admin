@@ -16,11 +16,15 @@ const MealPlanItem = ({
 }: MealPlanItemProps) => {
   return (
     <>
-      <span>{mealPlan.name}</span>
-      <span>{mealPlan.description}</span>
-      <div className="flex items-center">
+      <span className="flex w-1/3 items-center justify-start">
+        {mealPlan.name}
+      </span>
+      <span className="flex w-1/3 items-center justify-center">
+        {mealPlan.description}
+      </span>
+      <div className="flex w-1/3 items-center justify-end">
         <button
-          className="text-primary hover:text-primary-dark mr-2"
+          className="mr-2 text-primary hover:text-primary-dark"
           onClick={() => handleEdit(mealPlan.id)}
         >
           <MdOutlineEdit />

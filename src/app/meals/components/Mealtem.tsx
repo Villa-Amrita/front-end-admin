@@ -1,5 +1,5 @@
 import React from "react";
-import { type Meal } from "./MealsList";
+import { type Meal } from "./MealList";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 
@@ -12,11 +12,14 @@ interface MealItemProps {
 const MealItem = ({ meal, handleEdit, handleDelete }: MealItemProps) => {
   return (
     <>
-      <span>{meal.name}</span>
-      <span>{meal.description}</span>
-      <div className="flex items-center">
+      <span className="w-1/4">{meal.name}</span>
+      <span className="flex w-1/4 items-center justify-start">
+        {meal.description}
+      </span>
+      <span className="flex w-1/4 items-center justify-end">In-house Chef</span>
+      <div className="flex w-1/4 items-center justify-end">
         <button
-          className="text-primary hover:text-primary-dark mr-2"
+          className="mr-2 text-primary hover:text-primary-dark"
           onClick={() => handleEdit(meal.id)}
         >
           <MdOutlineEdit />

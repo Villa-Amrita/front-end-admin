@@ -1,16 +1,15 @@
 import NavBar from "~/components/NavBar";
-import MealPlansList from "./components/MealPlanList";
-import MealsList from "./components/MealList";
+import PageTitle from "~/components/PageTitle";
+import RequestList from "./components/RequestList";
 
 export default function HomePage() {
   return (
     <>
       <NavBar />
       <main className="px-4 py-6">
-        <MealPlansList />
+        <PageTitle title="Requests" />
         <br />
-        <MealsList />
-        <br />
+        <RequestList />
       </main>
     </>
   );
