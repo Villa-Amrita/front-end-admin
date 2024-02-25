@@ -59,7 +59,7 @@ const RoomData = ({ roomNumber }: RoomDataProps) => {
         name="roomName"
         value={roomName}
         onChange={(e) => setRoomName(e.target.value)}
-        className={`mb-2 rounded-md border ${roomName !== formData.roomName ? "border-red-500" : "border-gray-300"} p-2`}
+        className={`mb-2 rounded-md border ${roomName !== formData.roomName ? "border-yellow-500" : "border-gray-300"} p-2`}
       />
 
       <label htmlFor="roomSize" className="text-sm font-medium text-gray-600">
@@ -71,7 +71,7 @@ const RoomData = ({ roomNumber }: RoomDataProps) => {
         name="roomSize"
         value={roomSize}
         onChange={(e) => setRoomSize(parseInt(e.target.value))}
-        className={`mb-2 rounded-md border ${roomSize !== formData.roomSize ? "border-red-500" : "border-gray-300"} p-2`}
+        className={`mb-2 rounded-md border ${roomSize !== formData.roomSize ? "border-yellow-500" : "border-gray-300"} p-2`}
       />
 
       <label
@@ -85,7 +85,7 @@ const RoomData = ({ roomNumber }: RoomDataProps) => {
         name="roomDescription"
         value={roomDescription}
         onChange={(e) => setRoomDescription(e.target.value)}
-        className={`mb-2 rounded-md border ${roomDescription !== formData.roomDescription ? "border-red-500" : "border-gray-300"} p-2`}
+        className={`mb-2 rounded-md border ${roomDescription !== formData.roomDescription ? "border-yellow-500" : "border-gray-300"} p-2`}
       />
 
       <label
@@ -99,7 +99,7 @@ const RoomData = ({ roomNumber }: RoomDataProps) => {
         name="roomConditions"
         value={roomConditions}
         onChange={(e) => setRoomConditions(e.target.value)}
-        className={`mb-2 rounded-md border ${roomConditions !== formData.roomConditions ? "border-red-500" : "border-gray-300"} p-2`}
+        className={`mb-2 rounded-md border ${roomConditions !== formData.roomConditions ? "border-yellow-500" : "border-gray-300"} p-2`}
       />
 
       <label htmlFor="roomPrice" className="text-sm font-medium text-gray-600">
@@ -111,7 +111,7 @@ const RoomData = ({ roomNumber }: RoomDataProps) => {
         name="roomPrice"
         value={roomPrice}
         onChange={(e) => setRoomPrice(parseFloat(e.target.value))}
-        className={`mb-4 rounded-md border ${roomPrice !== formData.roomPrice ? "border-red-500" : "border-gray-300"} p-2`}
+        className={`mb-4 rounded-md border ${roomPrice !== formData.roomPrice ? "border-yellow-500" : "border-gray-300"} p-2`}
       />
 
       <button

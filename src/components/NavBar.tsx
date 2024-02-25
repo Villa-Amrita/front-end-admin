@@ -30,7 +30,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <div className="bg-primary flex h-20 w-full items-center justify-between px-6 font-[poppins] text-lg text-white transition-all">
+      <div className="flex h-20 w-full items-center justify-between bg-primary px-6 font-[poppins] text-lg text-white transition-all">
         <Link href="/">
           <div className="flex flex-row items-center justify-center space-x-3 font-bold">
             <div className="h-fit w-fit rounded-full bg-white p-2">
@@ -48,19 +48,19 @@ const NavBar = () => {
         <div className="font-bold">
           <ul className="flex w-fit flex-row items-center justify-between space-x-10">
             <li className={navItemStyles}>
-              <Link href={"/dashboard"}>Hotel Rooms</Link>
+              <Link href={"/rooms"}>Hotel Rooms</Link>
             </li>
             <li className={navItemStyles}>
               <Link href={"/meals"}>Meals</Link>
             </li>
             <li className={navItemStyles}>
-              <Link href={"/meals"}>Requests</Link>
+              <Link href={"/requests"}>Requests</Link>
             </li>
             <li className={navItemStyles}>
-              <Link href={"/meals"}>Reservations</Link>
+              <Link href={"/reservations"}>Invoices</Link>
             </li>
             <li className={navItemStyles}>
-              <Link href={"/meals"}>Reports</Link>
+              <Link href={"/reports"}>Reports</Link>
             </li>
             <li className="rounded-full bg-rose-600 px-4 py-1 font-normal text-white transition-colors hover:bg-rose-800">
               <button onClick={logout}>Logout</button>
