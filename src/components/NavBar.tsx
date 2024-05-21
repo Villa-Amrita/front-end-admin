@@ -56,12 +56,6 @@ const NavBar = () => {
             <li className={navItemStyles}>
               <Link href={"/requests"}>Requests</Link>
             </li>
-            <li className={navItemStyles}>
-              <Link href={"/reservations"}>Invoices</Link>
-            </li>
-            <li className={navItemStyles}>
-              <Link href={"/reports"}>Reports</Link>
-            </li>
             <li className="rounded-full bg-rose-600 px-4 py-1 font-normal text-white transition-colors hover:bg-rose-800">
               <button onClick={logout}>Logout</button>
             </li>

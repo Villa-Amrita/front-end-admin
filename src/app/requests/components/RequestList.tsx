@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 import RequestItem from "./RequestItem";
+import { type ReservationType } from "../../../../../back-end/server/api/trpcRouter";
 
 export enum RequestStatus {
-  Processing = "Processing",
-  Approved = "Approved",
-  Rejected = "Rejected",
-  Payed = "Payed",
+  Processing = "PENDING",
+  Approved = "CONFIRMED",
+  Rejected = "CANCELLED",
+  Payed = "PAYED",
 }
 
 type DailyMeals = {
@@ -16,119 +17,114 @@ type DailyMeals = {
   dinnerMealId: number;
 };
 
-export type Request = {
-  id: number;
-  roomNumber: number;
-  customerId: number;
-  startDate: Date;
-  endDate: Date;
-  mealPlanId: number;
-  dailyMeals: DailyMeals[];
-  status: RequestStatus;
-};
+interface RequestListProps {
+  reservations: ReservationType[];
+}
 
-const sampleRequests: Request[] = [
-  {
-    id: 1,
-    roomNumber: 101,
-    customerId: 1001,
-    startDate: new Date("2024-03-01"),
-    endDate: new Date("2024-03-05"),
-    mealPlanId: 1,
-    dailyMeals: [
-      {
-        breakfastMealId: 101,
-        lunchMealId: 201,
-        dinnerMealId: 301,
-      },
-    ],
-    status: RequestStatus.Processing,
-  },
-  {
-    id: 2,
-    roomNumber: 102,
-    customerId: 1002,
-    startDate: new Date("2024-03-05"),
-    endDate: new Date("2024-03-10"),
-    mealPlanId: 2,
-    dailyMeals: [
-      {
-        breakfastMealId: 102,
-        lunchMealId: 202,
-        dinnerMealId: 302,
-      },
-    ],
-    status: RequestStatus.Approved,
-  },
-  {
-    id: 3,
-    roomNumber: 103,
-    customerId: 1003,
-    startDate: new Date("2024-03-10"),
-    endDate: new Date("2024-03-15"),
-    mealPlanId: 1,
-    dailyMeals: [
-      {
-        breakfastMealId: 103,
-        lunchMealId: 203,
-        dinnerMealId: 303,
-      },
-    ],
-    status: RequestStatus.Rejected,
-  },
-  {
-    id: 4,
-    roomNumber: 104,
-    customerId: 1004,
-    startDate: new Date("2024-03-15"),
-    endDate: new Date("2024-03-20"),
-    mealPlanId: 3,
-    dailyMeals: [
-      {
-        breakfastMealId: 104,
-        lunchMealId: 204,
-        dinnerMealId: 304,
-      },
-    ],
-    status: RequestStatus.Payed,
-  },
-  {
-    id: 5,
-    roomNumber: 105,
-    customerId: 1005,
-    startDate: new Date("2024-03-20"),
-    endDate: new Date("2024-03-25"),
-    mealPlanId: 2,
-    dailyMeals: [
-      {
-        breakfastMealId: 105,
-        lunchMealId: 205,
-        dinnerMealId: 305,
-      },
-    ],
-    status: RequestStatus.Processing,
-  },
-  {
-    id: 6,
-    roomNumber: 106,
-    customerId: 1006,
-    startDate: new Date("2024-03-25"),
-    endDate: new Date("2024-04-05"),
-    mealPlanId: 1,
-    dailyMeals: [
-      {
-        breakfastMealId: 106,
-        lunchMealId: 206,
-        dinnerMealId: 306,
-      },
-    ],
-    status: RequestStatus.Approved,
-  },
-];
+export type Request = RequestStatus;
 
-const RequestList = () => {
+// const sampleRequests: Request[] = [
+//   {
+//     id: 1,
+//     roomNumber: 101,
+//     customerId: 1001,
+//     startDate: new Date("2024-03-01"),
+//     endDate: new Date("2024-03-05"),
+//     mealPlanId: 1,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 101,
+//         lunchMealId: 201,
+//         dinnerMealId: 301,
+//       },
+//     ],
+//     status: RequestStatus.Processing,
+//   },
+//   {
+//     id: 2,
+//     roomNumber: 102,
+//     customerId: 1002,
+//     startDate: new Date("2024-03-05"),
+//     endDate: new Date("2024-03-10"),
+//     mealPlanId: 2,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 102,
+//         lunchMealId: 202,
+//         dinnerMealId: 302,
+//       },
+//     ],
+//     status: RequestStatus.Approved,
+//   },
+//   {
+//     id: 3,
+//     roomNumber: 103,
+//     customerId: 1003,
+//     startDate: new Date("2024-03-10"),
+//     endDate: new Date("2024-03-15"),
+//     mealPlanId: 1,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 103,
+//         lunchMealId: 203,
+//         dinnerMealId: 303,
+//       },
+//     ],
+//     status: RequestStatus.Rejected,
+//   },
+//   {
+//     id: 4,
+//     roomNumber: 104,
+//     customerId: 1004,
+//     startDate: new Date("2024-03-15"),
+//     endDate: new Date("2024-03-20"),
+//     mealPlanId: 3,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 104,
+//         lunchMealId: 204,
+//         dinnerMealId: 304,
+//       },
+//     ],
+//     status: RequestStatus.Payed,
+//   },
+//   {
+//     id: 5,
+//     roomNumber: 105,
+//     customerId: 1005,
+//     startDate: new Date("2024-03-20"),
+//     endDate: new Date("2024-03-25"),
+//     mealPlanId: 2,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 105,
+//         lunchMealId: 205,
+//         dinnerMealId: 305,
+//       },
+//     ],
+//     status: RequestStatus.Processing,
+//   },
+//   {
+//     id: 6,
+//     roomNumber: 106,
+//     customerId: 1006,
+//     startDate: new Date("2024-03-25"),
+//     endDate: new Date("2024-04-05"),
+//     mealPlanId: 1,
+//     dailyMeals: [
+//       {
+//         breakfastMealId: 106,
+//         lunchMealId: 206,
+//         dinnerMealId: 306,
+//       },
+//     ],
+//     status: RequestStatus.Approved,
+//   },
+// ];
+
+const RequestList = ({ reservations }: RequestListProps) => {
   //define the list of ALL requests
-  const [requests, setRequests] = useState(sampleRequests);
+  const [requests, setRequests] = useState(reservations);
 
   //Pagination filter state
   const [currentPage, setCurrentPage] = useState(1);
@@ -153,10 +149,10 @@ const RequestList = () => {
 
   //Filter requests based on selected year and month, and selected state
   const filteredRequests = requests.filter((request) => {
-    const startDateYear = request.startDate.getFullYear();
-    const startDateMonth = request.startDate.getMonth() + 1; // Month is zero-indexed
-    const endDateYear = request.endDate.getFullYear();
-    const endDateMonth = request.endDate.getMonth() + 1; // Month is zero-indexed
+    const startDateYear = new Date(request.startDate).getFullYear();
+    const startDateMonth = new Date(request.startDate).getMonth() + 1; // Month is zero-indexed
+    const endDateYear = new Date(request.endDate).getFullYear();
+    const endDateMonth = new Date(request.endDate).getMonth() + 1; // Month is zero-indexed
 
     const isMatchingYearMonth =
       (!selectedYear ||
@@ -167,7 +163,8 @@ const RequestList = () => {
         endDateMonth === selectedMonth);
 
     const isMatchingStatus =
-      selectedStatus === "All" || request.status === selectedStatus;
+      selectedStatus === "All" ||
+      (request.status as RequestStatus) === selectedStatus;
 
     return isMatchingYearMonth && isMatchingStatus;
   });
