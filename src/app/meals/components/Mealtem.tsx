@@ -16,7 +16,19 @@ const MealItem = ({ meal, handleEdit, handleDelete }: MealItemProps) => {
       <span className="flex w-1/4 items-center justify-start">
         {meal.description}
       </span>
-      <span className="flex w-1/4 items-center justify-end">In-house Chef</span>
+      <span className="flex w-1/4 items-center justify-end">
+        {meal.mealPlanId == 1 && "None"}
+        {meal.mealPlanId == 2 && "Chef"}
+        {meal.mealPlanId == 3 && "Restaurant"}
+        {meal.mealPlanId == 4 && "AAA Restaurant"}
+        {meal.mealPlanId == 5 && "Test"}
+        {meal.mealPlanId != 1 &&
+          meal.mealPlanId != 2 &&
+          meal.mealPlanId != 3 &&
+          meal.mealPlanId != 4 &&
+          meal.mealPlanId != 5 &&
+          "None"}
+      </span>
       <div className="flex w-1/4 items-center justify-end">
         <button
           className="mr-2 text-primary hover:text-primary-dark"
