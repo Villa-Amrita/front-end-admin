@@ -2,27 +2,31 @@
 
 import React, { useState } from "react";
 import MealPlanItem from "./MealPlanItem";
+import { type MealPlanType } from "../../../../../back-end/server/api/trpcRouter";
+import { createMealPlan, updateMealPlan } from "lib/client";
 
-export type MealPlan = {
-  id: number;
-  name: string;
-  description: string;
-};
+export type MealPlan = MealPlanType;
 
-const sampleMealPlans: MealPlan[] = [
-  { id: 1, name: "In-house Chef", description: "In-house Chef" },
-  { id: 2, name: "ABC Restaurant", description: "ABC Restaurant" },
-  { id: 3, name: "BBC Restaurant", description: "BBC Restaurant" },
-  { id: 4, name: "CNN Restaurant", description: "CNN Restaurant" },
-  { id: 5, name: "Fathah Restaurant", description: "Fathah Restaurant" },
-  { id: 6, name: "New China Restaurant", description: "New China Restaurant" },
-];
+interface MealPlansListProps {
+  incomingMealPlans: MealPlan[];
+}
 
-const MealPlansList = () => {
-  const [mealPlans, setMealPlans] = useState(sampleMealPlans);
+// const sampleMealPlans: MealPlan[] = [
+//   { id: 1, name: "In-house Chef", description: "In-house Chef" },
+//   { id: 2, name: "ABC Restaurant", description: "ABC Restaurant" },
+//   { id: 3, name: "BBC Restaurant", description: "BBC Restaurant" },
+//   { id: 4, name: "CNN Restaurant", description: "CNN Restaurant" },
+//   { id: 5, name: "Fathah Restaurant", description: "Fathah Restaurant" },
+//   { id: 6, name: "New China Restaurant", description: "New China Restaurant" },
+// ];
+
+const MealPlansList = ({ incomingMealPlans }: MealPlansListProps) => {
+  const [mealPlans, setMealPlans] = useState(incomingMealPlans);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [limitOptions] = useState([5, 10, 15, 20]);
+  const [newMealPlanName, setNewMealPlanName] = useState("");
+  const [newMealPlanDescription, setNewMealPlanDescription] = useState("");
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -32,18 +36,27 @@ const MealPlansList = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleAdd = () => {
-    const newMealPlan: MealPlan = {
-      id: mealPlans.length + 1,
-      name: "New Meal Plan",
-      description: "New Meal Plan",
+  const handleAdd = async () => {
+    const newMealPlan = {
+      name: newMealPlanName,
+      description: newMealPlanDescription,
     };
-    setMealPlans([...mealPlans, newMealPlan]);
+    const createdMealPlan = await createMealPlan(newMealPlan);
+    setMealPlans([...mealPlans, createdMealPlan]);
   };
 
-  const handleEdit = (id: number) => {
-    console.log(`Edit meal plan with id ${id}`);
-    //TODO
+  const handleEdit = async (id: number) => {
+    const editMealPlan = {
+      id: id,
+      name: newMealPlanName,
+      description: newMealPlanDescription,
+    };
+    const updatedMealPlan = await updateMealPlan(editMealPlan);
+    setMealPlans(
+      mealPlans.map((mealPlan) =>
+        mealPlan.id === id ? updatedMealPlan : mealPlan,
+      ),
+    );
   };
 
   const handleDelete = (id: number) => {
@@ -62,7 +75,7 @@ const MealPlansList = () => {
         <select
           value={itemsPerPage}
           onChange={(e) => setItemsPerPage(Number(e.target.value))}
-          className="focus:border-primary rounded-md border p-2 text-sm focus:outline-none focus:ring"
+          className="rounded-md border p-2 text-sm focus:border-primary focus:outline-none focus:ring"
         >
           {limitOptions.map((option) => (
             <option key={option} value={option}>
@@ -88,12 +101,26 @@ const MealPlansList = () => {
       </ul>
 
       <div className="mt-4 flex justify-between">
-        <button
-          className="bg-primary hover:bg-primary-dark f;ex items-center rounded-md px-4 py-2 font-bold text-white"
-          onClick={() => handleAdd()}
-        >
-          Add Meal Plan
-        </button>
+        <div className="mt-2 w-1/2 justify-between">
+          <label className="mr-2 mt-2">Name:</label>
+          <input
+            className="mr-4 w-auto rounded-md border p-2 text-sm focus:border-primary focus:outline-none focus:ring"
+            onChange={(e) => setNewMealPlanName(e.target.value)}
+          ></input>
+          <label className="mr-2 mt-2">Description:</label>
+          <input
+            className="w-1/2 rounded-md border p-2 text-sm focus:border-primary focus:outline-none focus:ring"
+            onChange={(e) => setNewMealPlanDescription(e.target.value)}
+          ></input>
+        </div>
+        <div className="flex w-1/4 justify-start">
+          <button
+            className="mt-2 h-10 rounded-md bg-primary px-4 py-2 font-bold text-white hover:bg-primary-dark"
+            onClick={() => handleAdd()}
+          >
+            Add Meal Plan
+          </button>
+        </div>
         <div className="flex items-center">
           {Array.from({
             length: Math.ceil(mealPlans.length / itemsPerPage),

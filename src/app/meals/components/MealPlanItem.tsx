@@ -19,7 +19,7 @@ const MealPlanItem = ({
       <span className="flex w-1/3 items-center justify-start">
         {mealPlan.name}
       </span>
-      <span className="flex w-1/3 items-center justify-center">
+      <span className="flex w-1/3 items-center justify-start">
         {mealPlan.description}
       </span>
       <div className="flex w-1/3 items-center justify-end">
